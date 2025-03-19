@@ -4,18 +4,19 @@ import path from "path";
 import trataErros from "./erros/funcoesErro.js";
 import { contaPalavras } from "./index.js";
 import { montaSaidaArquivo } from "./helpers.js";
+import chalk from "chalk";
 
 const program = new Command();
 
 program
   .version("0.1")
-  .option("-t, --texto <string>", "⚙️ - Caminho do texto a ser processado")
-  .option("-d, --destino <string>", "⚙️ - Caminho para salvar resultados")
+  .option("-t, --texto <string>", "Caminho do texto a ser processado")
+  .option("-d, --destino <string>", "Caminho para salvar resultados")
   .action((options) => {
     const { texto, destino } = options;
     if (!texto || !destino) {
-      console.error("❌ - Erro inserir caminho de DESTINO e ORIGEM");
-      console.help();
+      console.error(chalk.red("❌ - Erro inserir caminho de DESTINO e ORIGEM"));
+      program.help();
       return;
     }
 
@@ -24,9 +25,9 @@ program
 
     try {
       processaArquivo(caminhoTexto, caminhoDestino);
-      console.log("✅ Texto Processado Com Sucesso ✅\n",);
+      console.log(chalk.green("✅ Texto Processado Com Sucesso ✅\n"));
     } catch (error) {
-      console.log("❌ Ocorreu Erro No Processamento ❌", error);
+      console.log(chalk.red("❌ Ocorreu Erro No Processamento ❌"));
     }
   });
 
@@ -51,10 +52,12 @@ function criaESalvaArquivo(listaPalavras, path) {
   fs.promises
     .writeFile(arquivoNovo, textoPalavras)
     .then(() => {
-      console.log("✅ Arquivo criado com sucesso ✅\n");
+      console.log(chalk.green("✅ Arquivo criado com sucesso ✅\n"));
     })
     .catch((error) => {
       throw error;
     })
-    .finally(() => console.log("✅ Operação finalizada com sucesso ✅\n"));
+    .finally(() =>
+      console.log(chalk.green("✅ Operação finalizada com sucesso ✅\n"))
+    );
 }

@@ -9,5 +9,4 @@ const montaSaidaArquivo = (listaPalavras) => {
   });
   return textoFinal;
 };
-
 export { montaSaidaArquivo };
