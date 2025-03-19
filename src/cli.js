@@ -16,7 +16,7 @@ program
     const { texto, destino } = options;
     if (!texto || !destino) {
       console.error(chalk.red("❌ - Erro inserir caminho de DESTINO e ORIGEM"));
-      program.help();
+      console.help();
       return;
     }
 
