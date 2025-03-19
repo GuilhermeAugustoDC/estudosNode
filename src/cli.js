@@ -35,10 +35,10 @@ function criaESalvaArquivo(listaPalavras, path) {
   fs.promises
     .writeFile(arquivoNovo, textoPalavras)
     .then(() => {
-      console.log("arquivo criado com sucesso");
+      console.log("✅ Arquivo criado com sucesso");
     })
     .catch((error) => {
       throw error;
     })
-    .finally(() => console.log("operação finalizada com sucesso"));
+    .finally(() => console.log("✅ Operação finalizada com sucesso"));
 }
